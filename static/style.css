@@ -1,0 +1,16 @@
+body {
+  background-color:#292929;
+  text-align:center;
+  color:white;
+  font-family: 'Cutive Mono', monospace;
+}
+
+a {
+  color:white;
+  text-decoration:none;
+  font-size:45px;
+}
+
+a:hover{
+  color:#ffa500;
+}

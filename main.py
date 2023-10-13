@@ -21,4 +21,4 @@ def index():
   return render_template("index.html", ran_title = choice(titles))
 
 
-app.run(host='0.0.0.0', port=81)
+app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)
