@@ -59,6 +59,24 @@ async = ["asgiref (>=3.2)"]
 dotenv = ["python-dotenv"]
 
 [[package]]
+name = "flask-htmldoom"
+version = "0.2.1"
+description = "htmldoom integration for Flask"
+optional = false
+python-versions = "*"
+files = [
+    {file = "Flask-Htmldoom-0.2.1.tar.gz", hash = "sha256:59fc078449696b6632510f0da19495e97ba7062ad51b5942458490357bdbea44"},
+    {file = "Flask_Htmldoom-0.2.1-py3-none-any.whl", hash = "sha256:bedcda4ff47622c8a8ce44747b1c3446ce41c348e07b7ec0d1b6ed3618a20c46"},
+]
+
+[package.dependencies]
+Flask = "*"
+
+[package.extras]
+dev = ["black (>=19.3b0)", "pytest (>=4.4.1)", "pytest-cov (>=2.7.1)", "tox (>=3.12.1)"]
+testing = ["black (>=19.3b0)", "pytest (>=4.4.1)", "pytest-cov (>=2.7.1)"]
+
+[[package]]
 name = "itsdangerous"
 version = "2.1.2"
 description = "Safely pass data to untrusted environments and back."
@@ -85,6 +103,21 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
+
+[[package]]
+name = "markdown"
+version = "3.5"
+description = "Python implementation of John Gruber's Markdown."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "Markdown-3.5-py3-none-any.whl", hash = "sha256:4afb124395ce5fc34e6d9886dab977fd9ae987fc6e85689f08278cf0c69d4bf3"},
+    {file = "Markdown-3.5.tar.gz", hash = "sha256:a807eb2e4778d9156c8f07876c6e4d50b5494c5665c4834f67b06459dfd877b3"},
+]
+
+[package.extras]
+docs = ["mdx-gh-links (>=0.2)", "mkdocs (>=1.5)", "mkdocs-gen-files", "mkdocs-literate-nav", "mkdocs-nature (>=0.6)", "mkdocs-section-index", "mkdocstrings[python]"]
+testing = ["coverage", "pyyaml"]
 
 [[package]]
 name = "markupsafe"
@@ -175,4 +208,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "8423deabc2bbdc7a7533a22d14c97ab8da16c2080acd0ecde5edd78e652454f3"
+content-hash = "b12be81a6a50c378710eda19953fe73d2314d92c6a377092f16f9878e44e2dca"

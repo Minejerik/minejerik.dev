@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>minejerik | {{title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+  </head>
+  <body>
+    <a href="/">home.</a>
+    <a href="{{source}}">source.</a>
+      <div class="content" style="justify-content:center;">
+        {{content | safe}}
+      </div>
+  </body>
+</html>
