@@ -77,7 +77,9 @@ def blog_post(id):
   return render_template("blog_post.html",
                          title=title,
                          content=markdown.markdown(str(content)),
-                         source=source)
+                         source=source,
+                         date=date
+                        )
 
 
 app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)

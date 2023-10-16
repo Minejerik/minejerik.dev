@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
   </head>
   <body>
-    <a href="/" style="font-size:75px">home.</a>
     <div style="font-size:75px">blog.</div>
+    <a href="/" style="font-size:50px">home.</a>
     {% for i in range(posts | length) %}
       {% set source = sources[i] %}
       {% set title = titles[i] %}
