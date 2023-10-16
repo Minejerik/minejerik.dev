@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>minejerik | blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+  </head>
+  <body>
+    <a href="/" style="font-size:75px">home.</a>
+    <div style="font-size:75px">blog.</div>
+    {% for i in range(posts | length) %}
+      {% set source = sources[i] %}
+      {% set title = titles[i] %}
+      {% set content = contents[i] %}
+      {% set date = dates[i] %}
+      <div class="post">
+        <a class="temp" href="/blog/{{i+1}}">
+          {{title}}<br>
+          {{date}}
+        </a>
+      </div>
+    {% endfor %}
+  </body>
+</html>
