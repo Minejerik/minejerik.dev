@@ -14,9 +14,10 @@
       {% set source = sources[i] %}
       {% set title = titles[i] %}
       {% set content = contents[i] %}
+      {% set id = ids[i] %}
       {% set date = dates[i] %}
       <div class="post">
-        <a class="temp" href="/blog/{{i+1}}">
+        <a class="temp" href="/blog/{{id}}">
           {{title}}<br>
           {{date}}
         </a>

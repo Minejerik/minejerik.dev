@@ -27,8 +27,18 @@ h1{
   text-align:left;
 }
 
+.content a{
+  width:50%;
+  padding:auto;
+  margin:auto;
+  text-align:left;
+  font-size:20px;
+}
+
 code{
-  /* background-color:#323232; */
+  background-color:#393939;
+  border-radius:2px;
+  padding:1px;
   letter-spacing:2px;
   font-size:15px;
 }

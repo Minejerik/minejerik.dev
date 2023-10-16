@@ -5,6 +5,8 @@ import markdown
 
 app = Flask(__name__)
 
+cache = {}
+
 # md = Markdown(app)
 
 #defines all possible titles
@@ -49,28 +51,39 @@ def blog():
   titles = []
   sources = []
   contents = []
+  ids = []
   dates = []
   files = os.listdir("blog")
   posts = [f.replace(".md","") for f in files]
+  posts.reverse()
   for p in posts:
-    title, source, content,date = get_blog_metadata(p)
+    if p not in cache.keys():
+      title,source,content,date = get_blog_metadata(p)
+      cache[p] = (title,source,content,date)
+    else:
+      title,source,content,date = cache[p]
     titles.append(title)
     sources.append(source)
     contents.append(content)
     dates.append(date)
+    ids.append(int(p))
   return render_template("blog.html", 
                          posts=posts,
                          titles=titles, 
                          sources=sources, 
                          contents=contents,
-                         dates=dates)
+                         dates=dates,
+                         ids=ids)
 
 
 @app.route('/blog/<id>')
 def blog_post(id):
 
-  title,source,content,date = get_blog_metadata(id)
-
+  if id not in cache.keys():
+    title,source,content,date = get_blog_metadata(id)
+    cache[id] = (title,source,content,date)
+  else:
+    title,source,content,date = cache[id]
   if title is None:
     abort(404)
 
