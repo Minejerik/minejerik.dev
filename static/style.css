@@ -36,12 +36,20 @@ h1{
 }
 
 code{
-  background-color:#393939;
+  background-color:#161f27;
+  color:#ffbe85;
   border-radius:2px;
   padding:1px;
   letter-spacing:2px;
   font-size:15px;
 }
+
+pre > code {
+  padding: 10px;
+  display: block;
+  overflow-x: auto;
+}
+
 
 img{
   width:60%;
