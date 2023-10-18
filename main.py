@@ -95,4 +95,9 @@ def blog_post(id):
                         )
 
 
+@app.route('/about')
+def about():
+  return render_template("about.html")
+
+
 app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)
