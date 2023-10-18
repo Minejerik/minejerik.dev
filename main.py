@@ -6,6 +6,7 @@ import markdown
 app = Flask(__name__)
 
 cache = {}
+nocache = False
 
 # md = Markdown(app)
 
@@ -57,7 +58,7 @@ def blog():
   posts = [f.replace(".md","") for f in files]
   posts.reverse()
   for p in posts:
-    if p not in cache.keys():
+    if p not in cache.keys() or nocache is True:
       title,source,content,date = get_blog_metadata(p)
       cache[p] = (title,source,content,date)
     else:
@@ -79,7 +80,7 @@ def blog():
 @app.route('/blog/<id>')
 def blog_post(id):
 
-  if id not in cache.keys():
+  if id not in cache.keys() or nocache is True:
     title,source,content,date = get_blog_metadata(id)
     cache[id] = (title,source,content,date)
   else:
