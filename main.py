@@ -15,17 +15,25 @@ nocache = True
 titles = [
     "Did you know these titles change? Reload the page for another!",
     "hello from flask",
-    "0% javascript",
+    "5% javascript",
     "now w/ less color!",
     "tf is django",
-    "this is a title"
+    "this is a title",
+    "we do a little"
 ]
 
+quotes = [
+  "We do a little programming",
+  "Javascript is a plague on earth",
+  "Did you ever think about the fact that earth is the only planet people have died on, and it has javascript?",
+  "Covid will last 2 weeks (2020)",
+  "Reload thy page and thou shalt see, the title change for thee"
+]
 
 @app.route('/')
 def index():
   #renders main html file w/ a random title extension
-  return render_template("index.html", ran_title=choice(titles))
+  return render_template("index.html", ran_title=choice(titles), ran_quote=choice(quotes))
 
 def get_blog_metadata(blog_id):
   try:
@@ -97,10 +105,6 @@ def blog_post(id):
                          date=date
                         )
 
-
-@app.route('/about')
-def about():
-  return render_template("about.html")
 
 
 app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)
