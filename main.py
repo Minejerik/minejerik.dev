@@ -92,6 +92,9 @@ def project(id):
     abort(404)
   return render_template(f"projects/{id}/index.html")
 
+# @app.route("/projects")
+# def projects():
+#   return render_template('project.html')
 
 @app.route('/blog/<id>')
 def blog_post(id):

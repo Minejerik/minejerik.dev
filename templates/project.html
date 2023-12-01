@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>minejerik | projects</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='pico.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='pico_style.css')}}"> 
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><strong>Minejerik</strong></li>
+    </ul>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+  </nav>
+  <div class="grid">
+    <div>
+      <article>
+      <img src="{{url_for('static', filename='project_page/mnnlib.png')}}">
+        <footer>MNNlibV2
+        <a href="https://github.com/Minejerik/mnnlbv2">Source</a>
+          </footer>
+      </article>
+    </div>
+    <div>
+      <article>
+        test
+        <footer>
+          test
+        </footer>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
