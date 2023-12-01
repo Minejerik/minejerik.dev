@@ -86,6 +86,12 @@ def blog():
                          dates=dates,
                          ids=ids)
 
+@app.route('/project/<id>')
+def project(id):
+  if id not in os.listdir("templates/projects"):
+    abort(404)
+  return render_template(f"projects/{id}/index.html")
+
 
 @app.route('/blog/<id>')
 def blog_post(id):
