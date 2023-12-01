@@ -1,19 +1,40 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>minejerik | {{title}}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
-  </head>
-  <body>
-    <a href="/">home.</a>
-    <a href="{{source}}">source.</a>
-      <div class="content" style="justify-content:center;">
-        <h1>{{title}}</h1>
-        <div>{{date}}</div>
-        {{content | safe}}
-      </div>
-  </body>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>minejerik | {{title}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='pico_style.css')}}"> 
+</head>
+<body>
+  <!-- <a href="/">home.</a>
+  <a href="{{source}}">source.</a>
+    <div class="content" style="justify-content:center;">
+      <h1>{{title}}</h1>
+      <div>{{date}}</div>
+      {{content | safe}}
+    </div> -->
+  <div class="grid">
+    <div></div>
+    <div>
+      <nav>
+        <ul>
+          <li><strong>Minejerik</strong></li>
+        </ul>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+      <hgroup>
+        <h3>{{title}}</h3>
+        <h5>{{date}}</h5>
+      </hgroup>
+      {{content | safe}}
+    </div>
+    <div></div>
+  </div>
+</body>
 </html>

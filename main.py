@@ -1,3 +1,4 @@
+#type: ignore
 from flask import Flask, render_template, abort
 from random import choice
 import os
@@ -6,7 +7,7 @@ import markdown
 app = Flask(__name__)
 
 cache = {}
-nocache = False
+nocache = True
 
 # md = Markdown(app)
 
@@ -17,6 +18,7 @@ titles = [
     "0% javascript",
     "now w/ less color!",
     "tf is django",
+    "this is a title"
 ]
 
 
@@ -41,7 +43,7 @@ def get_blog_metadata(blog_id):
   date = date.replace("DATE:","")
   content = temp[3:]
   content = "\n".join(content)
-  content = content.replace(" .", ".")
+  content = content.replace(" .", ".").replace(".\n",".    \n")
 
   return title, source, content,date
   
