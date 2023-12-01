@@ -15,7 +15,7 @@ nocache = True
 titles = [
     "Did you know these titles change? Reload the page for another!",
     "hello from flask",
-    "5% javascript",
+    "0% javascript",
     "now w/ less color!",
     "tf is django",
     "this is a title",
