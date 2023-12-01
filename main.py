@@ -96,6 +96,11 @@ def project(id):
 # def projects():
 #   return render_template('project.html')
 
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route('/blog/<id>')
 def blog_post(id):
 
