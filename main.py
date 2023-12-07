@@ -7,19 +7,26 @@ import markdown
 app = Flask(__name__)
 
 cache = {}
-nocache = True
+nocache = False
+
+@app.template_filter('pluralize')
+def pluralize(number, singular = '', plural = 's'):
+    if number == 1:
+        return singular
+    else:
+        return plural
 
 # md = Markdown(app)
 
 #defines all possible titles
 titles = [
-    "Did you know these titles change? Reload the page for another!",
-    "hello from flask",
-    "0% javascript",
-    "now w/ less color!",
-    "tf is django",
-    "this is a title",
-    "we do a little"
+  "Did you know these titles change? Reload the page for another!",
+  "hello from flask",
+  "0% javascript",
+  "now w/ less color!",
+  "tf is django",
+  "this is a title",
+  "we do a little"
 ]
 
 quotes = [
@@ -27,7 +34,8 @@ quotes = [
   "Javascript is a plague on earth",
   "Did you ever think about the fact that earth is the only planet people have died on, and it has javascript?",
   "Covid will last 2 weeks (2020)",
-  "Reload thy page and thou shalt see, the title change for thee"
+  "Reload thy page and thou shalt see, the title change for thee",
+  "these change btw"
 ]
 
 @app.route('/')
@@ -53,7 +61,10 @@ def get_blog_metadata(blog_id):
   content = "\n".join(content)
   content = content.replace(" .", ".").replace(".\n",".    \n")
 
-  return title, source, content,date
+  # read_time = round(len(content.split())/238)
+  read_time = len(content.split()) // 150
+
+  return title, source, content, date, read_time
   
 
 
@@ -69,10 +80,10 @@ def blog():
   posts.reverse()
   for p in posts:
     if p not in cache.keys() or nocache is True:
-      title,source,content,date = get_blog_metadata(p)
-      cache[p] = (title,source,content,date)
+      title,source,content,date,read = get_blog_metadata(p)
+      cache[p] = (title,source,content,date,read)
     else:
-      title,source,content,date = cache[p]
+      title,source,content,date,read = cache[p]
     titles.append(title)
     sources.append(source)
     contents.append(content)
@@ -105,10 +116,10 @@ def page_not_found(e):
 def blog_post(id):
 
   if id not in cache.keys() or nocache is True:
-    title,source,content,date = get_blog_metadata(id)
-    cache[id] = (title,source,content,date)
+    title,source,content,date,read = get_blog_metadata(id)
+    cache[id] = (title,source,content,date,read)
   else:
-    title,source,content,date = cache[id]
+    title,source,content,date,read = cache[id]
   if title is None:
     abort(404)
 
@@ -116,7 +127,8 @@ def blog_post(id):
                          title=title,
                          content=markdown.markdown(str(content)),
                          source=source,
-                         date=date
+                         date=date,
+                         read_time = read
                         )
 
 
