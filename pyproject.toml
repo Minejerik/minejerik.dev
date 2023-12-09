@@ -9,6 +9,7 @@ python = ">=3.10.0,<3.11"
 flask = "^3.0.0"
 flask-htmldoom = "^0.2.1"
 markdown = "^3.5"
+pony = "^0.7.17"
 
 [tool.pyright]
 # https://github.com/microsoft/pyright/blob/main/docs/configuration.md

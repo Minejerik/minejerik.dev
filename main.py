@@ -1,10 +1,19 @@
 #type: ignore
 from flask import Flask, render_template, abort
+from pony.flask import Pony
+from pony import orm
 from random import choice
 import os
 import markdown
 
 app = Flask(__name__)
+Pony(app)
+
+db = orm.Database()
+
+
+
+
 
 cache = {}
 nocache = False
@@ -103,10 +112,6 @@ def project(id):
     abort(404)
   return render_template(f"projects/{id}/index.html")
 
-# @app.route("/projects")
-# def projects():
-#   return render_template('project.html')
-
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -132,5 +137,5 @@ def blog_post(id):
                         )
 
 
-
-app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)
+if __name__ == "__main__":
+  app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)
