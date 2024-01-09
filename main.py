@@ -1,4 +1,3 @@
-#type: ignore
 from flask import Flask, render_template, abort
 from random import choice
 import os
@@ -12,15 +11,15 @@ nocache = False
 
 @app.template_filter('pluralize')
 def pluralize(number, singular='', plural='s'):
-  if number == 1:
-    return singular
-  else:
-    return plural
+    if number == 1:
+        return singular
+    else:
+        return plural
 
 
 # md = Markdown(app)
 
-#defines all possible titles
+# defines all possible titles
 titles = [
     "Did you know these titles change? Reload the page for another!",
     "hello from flask", "0% javascript", "now w/ less color!", "tf is django",
@@ -40,71 +39,71 @@ quotes = [
 
 @app.route('/')
 def index():
-  #renders main html file w/ a random title extension
-  return render_template("index.html",
-                         ran_title=choice(titles),
-                         ran_quote=choice(quotes))
+    # renders main html file w/ a random title extension
+    return render_template("index.html",
+                           ran_title=choice(titles),
+                           ran_quote=choice(quotes))
 
 
 def get_blog_metadata(blog_id):
-  try:
-    with open(f"blog/{blog_id}.md", "r") as f:
-      mark = f.read()
-  except Exception:
-    return None, None, None, None
+    try:
+        with open(f"blog/{blog_id}.md", "r") as f:
+            mark = f.read()
+    except Exception:
+        return None, None, None, None
 
-  temp = mark.split("\n")
-  title = temp[0]
-  title = title.replace("TITLE:", "")
-  source = temp[1]
-  source = source.replace("SOURCE:", "")
-  date = temp[2]
-  date = date.replace("DATE:", "")
-  content = temp[3:]
-  content = "\n".join(content)
-  content = content.replace(" .", ".").replace(".\n", ".    \n")
+    temp = mark.split("\n")
+    title = temp[0]
+    title = title.replace("TITLE:", "")
+    source = temp[1]
+    source = source.replace("SOURCE:", "")
+    date = temp[2]
+    date = date.replace("DATE:", "")
+    content = temp[3:]
+    content = "\n".join(content)
+    content = content.replace(" .", ".").replace(".\n", ".    \n")
 
-  # read_time = round(len(content.split())/238)
-  read_time = len(content.split()) // 150
+    # read_time = round(len(content.split())/238)
+    read_time = len(content.split()) // 150
 
-  return title, source, content, date, read_time
+    return title, source, content, date, read_time
 
 
 @app.route("/blog")
 def blog():
-  titles = []
-  sources = []
-  contents = []
-  ids = []
-  dates = []
-  files = os.listdir("blog")
-  posts = [f.replace(".md", "") for f in files]
-  posts.reverse()
-  for p in posts:
-    if p not in cache.keys() or nocache is True:
-      title, source, content, date, read = get_blog_metadata(p)
-      cache[p] = (title, source, content, date, read)
-    else:
-      title, source, content, date, read = cache[p]
-    titles.append(title)
-    sources.append(source)
-    contents.append(content)
-    dates.append(date)
-    ids.append(int(p))
-  return render_template("blog.html",
-                         posts=posts,
-                         titles=titles,
-                         sources=sources,
-                         contents=contents,
-                         dates=dates,
-                         ids=ids)
+    titles = []
+    sources = []
+    contents = []
+    ids = []
+    dates = []
+    files = os.listdir("blog")
+    posts = [f.replace(".md", "") for f in files]
+    posts.reverse()
+    for p in posts:
+        if p not in cache.keys() or nocache is True:
+            title, source, content, date, read = get_blog_metadata(p)
+            cache[p] = (title, source, content, date, read)
+        else:
+            title, source, content, date, read = cache[p]
+        titles.append(title)
+        sources.append(source)
+        contents.append(content)
+        dates.append(date)
+        ids.append(int(p))
+    return render_template("blog.html",
+                           posts=posts,
+                           titles=titles,
+                           sources=sources,
+                           contents=contents,
+                           dates=dates,
+                           ids=ids)
 
 
 @app.route('/project/<id>')
 def project(id):
-  if id not in os.listdir("templates/projects"):
-    abort(404)
-  return render_template(f"projects/{id}/index.html")
+    if id not in os.listdir("templates/projects"):
+        abort(404)
+    return render_template(f"projects/{id}/index.html")
 
 
 # @app.route("/projects")
@@ -114,26 +113,27 @@ def project(id):
 
 @app.errorhandler(404)
 def page_not_found(e):
-  return render_template('404.html'), 404
+    return render_template('404.html'), 404
 
 
 @app.route('/blog/<id>')
 def blog_post(id):
 
-  if id not in cache.keys() or nocache is True:
-    title, source, content, date, read = get_blog_metadata(id)
-    cache[id] = (title, source, content, date, read)
-  else:
-    title, source, content, date, read = cache[id]
-  if title is None:
-    abort(404)
+    if id not in cache.keys() or nocache is True:
+        title, source, content, date, read = get_blog_metadata(id)
+        cache[id] = (title, source, content, date, read)
+    else:
+        title, source, content, date, read = cache[id]
+    if title is None:
+        abort(404)
 
-  return render_template("blog_post.html",
-                         title=title,
-                         content=markdown.markdown(str(content)),
-                         source=source,
-                         date=date,
-                         read_time=read)
+    return render_template("blog_post.html",
+                           title=title,
+                           content=markdown.markdown(str(content)),
+                           source=source,
+                           date=date,
+                           read_time=read)
 
 
-app.run(host='0.0.0.0', port=81, debug=True, use_evalex=False)
+if __name__ == "__main__":
+    app.run(debug=True, use_evalex=False)
