@@ -6,7 +6,7 @@ import markdown
 app = Flask(__name__)
 
 cache = {}
-nocache = False
+nocache = True
 
 
 @app.template_filter('pluralize')
