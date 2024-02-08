@@ -5,33 +5,48 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>minejerik | {{ran_title}}</title>
-  <link rel="stylesheet" href="{{url_for('static',filename='pico.min.css')}}">
-  <link rel="stylesheet" href="{{url_for('static',filename='pico_style.css')}}"> 
+  <link rel="stylesheet" href="{{url_for('static',filename='chota.css')}}">
 </head>
-<body>
-  <div class="grid">
-    <div></div>
-    <div>
+<body style="overflow-x: hidden;">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col">
+
+      <nav class="nav">
+
+        <div class="nav-left">
+          <div class="tabs">
+            <a href="/" class="active">Home</a>
+          </div>
+        </div>
+
+        <div class="nav-center">
+          <a class="brand" href="#">Minejerik</a>
+        </div>
+
+        <div class="nav-right">
+          <div class="tabs">
+            <a href="/blog">Blog</a>
+          </div>
+        </div>
+        
+      </nav>
+
       <br>
-      <h1>Minejerik</h1>
-      <p>
-        Hello! I'm Minejerik, a developer based in michigan.
-      </p>
       <blockquote>
         "{{ran_quote}}"
         <footer>
           <cite>- Minejerik</cite>
         </footer>
-        </footer>
       </blockquote>
-      <h3>Important Links:</h3>
-      <ul>
-      <li><a href="https://www.fiverr.com/minejerik">Fiverr</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="https://github.com/Minejerik">Github</a></li>
-      </ul>
+      <div class="card">
+        
+      <h3>
+        Hello! I am Minejerik, a developer based in michigan.
+      </h3>
+      </div>
     </div>
-    <div></div>
+    <div class="col-3"></div>
   </div>
   
 </body>

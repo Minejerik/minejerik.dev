@@ -78,6 +78,7 @@ def blog():
     dates = []
     files = os.listdir("blog")
     posts = [f.replace(".md", "") for f in files]
+    posts = sorted(posts)
     posts.reverse()
     for p in posts:
         if p not in cache.keys() or nocache is True:

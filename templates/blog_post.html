@@ -5,39 +5,40 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>minejerik | {{title}}</title>
-  <link rel="stylesheet" href="{{url_for('static',filename='pico.min.css')}}">
-  <link rel="stylesheet" href="{{url_for('static',filename='pico_style.css')}}"> 
+  <link rel="stylesheet" href="{{url_for('static',filename='chota.css')}}">
 </head>
-<body>
-  <!-- <a href="/">home.</a>
-  <a href="{{source}}">source.</a>
-    <div class="content" style="justify-content:center;">
-      <h1>{{title}}</h1>
-      <div>{{date}}</div>
-      {{content | safe}}
-    </div> -->
-  <div class="grid">
-    <div></div>
-    <div>
-      <nav>
-        <ul>
-          <li><strong>Minejerik</strong></li>
-        </ul>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog">Blog</a></li>
-          {% if source != 'NONE' %}
-          <li><a href="{{source}}">Source</a></li>
-          {% endif %}
-        </ul>
+<body style="overflow-x: hidden;">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col">
+      
+      <nav class="nav">
+
+        <div class="nav-left">
+          <div class="tabs">
+            <a href="/">Home</a>
+          </div>
+        </div>
+
+        <div class="nav-center">
+          <a class="brand" href="#">Minejerik</a>
+        </div>
+
+        <div class="nav-right">
+          <div class="tabs">
+            <a href="/blog">Blog</a>
+          </div>
+        </div>
+        
       </nav>
+
       <hgroup>
         <h3>{{title}}</h3>
         <h5>{{date}} - {{read_time}} Minute{{read_time|pluralize}}</h5>
       </hgroup>
       {{content | safe}}
     </div>
-    <div></div>
+    <div class="col-3"></div>
   </div>
 </body>
 </html>
