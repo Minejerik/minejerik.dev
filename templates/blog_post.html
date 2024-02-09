@@ -34,7 +34,7 @@
 
       <hgroup>
         <h3>{{title}}</h3>
-        <h5>{{date}} - {{read_time}} Minute{{read_time|pluralize}}</h5>
+        <h5>{{date}} - {{read_time}} Minute{{read_time|pluralize}} {% if source != "NONE" %} - <a href="{{source}}">Source</a> {% endif %} </h5>
       </hgroup>
       {{content | safe}}
     </div>

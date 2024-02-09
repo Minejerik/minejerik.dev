@@ -23,7 +23,7 @@ def pluralize(number, singular='', plural='s'):
 titles = [
     "Did you know these titles change? Reload the page for another!",
     "hello from flask", "0% javascript", "now w/ less color!", "tf is django",
-    "this is a title", "we do a little"
+    "this is a title", "we do a little", "huh",
 ]
 
 quotes = [
@@ -31,9 +31,15 @@ quotes = [
     "Javascript is a plague on earth",
     "Did you ever think about the fact that earth is the only planet people have died on, and it has javascript?",
     "Covid will last 2 weeks (2020)",
-    "Reload thy page and thou shalt see, the title change for thee",
     "these change btw",
-    "python is the javascript of programming languages"  # <-- quote
+    "python is the javascript of programming languages",  # <-- quote
+    "me when i deploy this website but forget a major feature",
+    "are you still here?",
+    "it's not a bug, it's an undocumented feature",
+    "i concur",
+    "how did they compile the first compiler?",
+    "",
+    "<a href='https://github.com/Minejerik/minejerik.dev'>SOURCE</a>",
 ]
 
 
