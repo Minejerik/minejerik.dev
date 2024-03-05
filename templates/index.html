@@ -5,13 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>minejerik | {{ran_title}}</title>
-  <link rel="stylesheet" href="{{url_for('static',filename='chota.css')}}">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/static/chota.css">
+  <!-- GOAT COUNTER / ANALYTICS -->
   <script data-goatcounter="https://minejerik.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </head>
 <body style="overflow-x: hidden;">
   <div class="row">
-    <div class="col-3"></div>
+    <div class="col-2"></div>
     <div class="col">
 
       <nav class="nav">
@@ -35,22 +38,25 @@
       </nav>
 
       <br>
+      <div class="card">
+      <h3>
+        Hi! 👋 I'm Minejerik
+      </h3>
       <blockquote>
         "{{ran_quote | safe}}"
         <footer>
           <cite>- Minejerik</cite>
         </footer>
       </blockquote>
-      <div class="card">
-      <h3>
-        Hello! I am Minejerik, a developer based in michigan.
-      </h3>
+      <br>
       <p>
-        I mostly use python, but I am trying to expand to other languages.
+        I am a developer, and a high school student, based in michigan.
+        I am very interested in programming and computer science in general.
+        
       </p>
       </div>
     </div>
-    <div class="col-3"></div>
+    <div class="col-2"></div>
   </div>
   
 </body>
