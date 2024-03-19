@@ -2,12 +2,12 @@
 /* stylelint-disable length-zero-no-unit */
 /* stylelint-disable property-no-vendor-prefix */
 body.dark {
-    --bg-color: #000;
+    --bg-color: #101010;
     --bg-secondary-color: #262626;
     --font-color: #f5f5f5;
-    --color-grey: #bbb;
+    --color-grey: #d8d7d7;
     --color-darkGrey: #888;
-    --color-primary: #17c16f;
+    --color-primary: #00ff84;
     --color-error: #ea4f4f;
   }
   
@@ -305,3 +305,10 @@ body.dark {
   .highlight .il {
     color: #2aa198;
   } /* Literal.Number.Integer.Long */
+
+nav.brand{
+  font-size:1.75em;
+  padding-bottom:0;
+  padding-top:0;
+  color:var(--color-primary);
+}

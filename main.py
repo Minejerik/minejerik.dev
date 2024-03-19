@@ -58,7 +58,7 @@ def get_blog_metadata(blog_id):
         with open(f"blog/{blog_id}.md", "r") as f:
             mark = f.read()
     except Exception:
-        return None, None, None, None
+        return None, None, None, None, None
 
     temp = mark.split("\n")
     title = temp[0]
