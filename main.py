@@ -2,6 +2,7 @@ from flask import Flask, render_template, abort
 from random import choice
 import os
 import json
+from datetime import datetime
 import markdown
 
 #USE mjflask
@@ -50,9 +51,17 @@ quotes = [
 @app.route('/')
 def index():
     # renders main html file w/ a random title extension
+    posts = os.listdir("blog")
+    posts = sorted(posts)
+    posts.reverse()
+    posts.remove("example.md")
+    posts = posts[0:3]
+    posts = [get_blog_metadata(post.replace(".md","")) for post in posts]
+
     return render_template("index.html",
                            ran_title=choice(titles),
-                           ran_quote=choice(quotes))
+                           ran_quote=choice(quotes),
+                           new_posts=posts)
 
 
 def get_blog_metadata(blog_id):
@@ -80,8 +89,9 @@ def get_blog_metadata(blog_id):
 
     base['title'] = data['title'].replace("\n","")
     base['source'] = data['source']
-    base['date'] = data['date']
+    base['date'] = datetime.strptime(data['date'], "%m-%d-%Y").strftime("%B %d %Y")
     base['tags'] = data['tags']
+    base['description'] = data['description']
     base['id'] = blog_id
 
     content = temp[3:]
@@ -100,6 +110,7 @@ def blog():
     files = os.listdir("blog")
     posts = [f.replace(".md", "") for f in files]
     posts = sorted(posts)
+    posts.remove("example")
     posts.reverse()
     for p in posts:
         data = get_blog_metadata(p)

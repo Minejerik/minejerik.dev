@@ -10,7 +10,7 @@
   <script data-goatcounter="https://minejerik.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </head>
-<body style="overflow-x: hidden;" class="dark">
+<body style="overflow-x: hidden;">
   <div class="row">
     <div class="col-3"></div>
     <div class="col">
@@ -38,6 +38,7 @@
       <hgroup>
         <h3>{{post_data['title']}}</h3>
         <h5>{{post_data['date']}} - {{post_data['read_time']}} Minute{{post_data['read_time']|pluralize}} {% if post_data['source'] != "NONE" %} - <a href="{{post_data['source']}}">Source</a> {% endif %} </h5>
+        <h5> {% for tag in post_data['tags']%} <a href="/tag/{{tag}}">{{tag}}</a> {% if post_data['tags'].index(tag) != (post_data['tags']|length) -1 %} - {% endif %} {% endfor %}<br></h5>
       </hgroup>
       {{post_data['content'] | safe}}
     </div>
@@ -45,3 +46,4 @@
   </div>
 </body>
 </html>
+alliance

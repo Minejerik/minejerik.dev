@@ -13,7 +13,7 @@
   <script data-goatcounter="https://minejerik.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </head>
-<body style="overflow-x: hidden;" class="dark">
+<body style="overflow-x: hidden;">
   <div class="row">
     <div class="col-2"></div>
     <div class="col">
@@ -50,11 +50,19 @@
         </footer>
       </blockquote>
       <br>
-      <p>
+      <h4>
         I am a developer, and a high school student, based in michigan.
         I am very interested in programming and computer science in general.
         
-      </p>
+      </h4>
+      <h3>Recent Blog Posts:</h3>
+      <ul>
+        {% for post in new_posts %}
+        <li>
+          {{post['date']}}: <a href="/blog/{{post['id']}}">{{post['title']}}</a>
+        </li>
+        {% endfor %}
+      </ul>
       </div>
     </div>
     <div class="col-2"></div>
