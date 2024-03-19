@@ -1,9 +1,11 @@
 from flask import Flask, render_template, abort
 from random import choice
 import os
+import json
 import markdown
 
 #USE mjflask
+
 
 app = Flask(__name__)
 
@@ -54,58 +56,57 @@ def index():
 
 
 def get_blog_metadata(blog_id):
+
+    base = {
+        "title":"",
+        "source":"",
+        "content":"content",
+        "date":"",
+        "read_time":"",
+        "tags":[],
+        "description":"",
+        "id":""
+    }
+
     try:
         with open(f"blog/{blog_id}.md", "r") as f:
             mark = f.read()
     except Exception:
-        return None, None, None, None, None
+        return base
 
     temp = mark.split("\n")
-    title = temp[0]
-    title = title.replace("TITLE:", "")
-    source = temp[1]
-    source = source.replace("SOURCE:", "")
-    date = temp[2]
-    date = date.replace("DATE:", "")
+
+    data = json.loads(temp[0])
+
+    base['title'] = data['title'].replace("\n","")
+    base['source'] = data['source']
+    base['date'] = data['date']
+    base['tags'] = data['tags']
+    base['id'] = blog_id
+
     content = temp[3:]
     content = "\n".join(content)
-    content = content.replace(" .", ".").replace(".\n", ".    \n")
+    base['content'] = markdown.markdown(content)
 
     # read_time = round(len(content.split())/238)
-    read_time = len(content.split()) // 150
+    base["read_time"] = len(content.split()) // 150
 
-    return title, source, content, date, read_time
+    return base
 
 
 @app.route("/blog")
 def blog():
-    titles = []
-    sources = []
-    contents = []
-    ids = []
-    dates = []
+    posts_data = []
     files = os.listdir("blog")
     posts = [f.replace(".md", "") for f in files]
     posts = sorted(posts)
     posts.reverse()
     for p in posts:
-        if p not in cache.keys() or nocache is True:
-            title, source, content, date, read = get_blog_metadata(p)
-            cache[p] = (title, source, content, date, read)
-        else:
-            title, source, content, date, read = cache[p]
-        titles.append(title)
-        sources.append(source)
-        contents.append(content)
-        dates.append(date)
-        ids.append(int(p))
-    return render_template("blog.html",
-                           posts=posts,
-                           titles=titles,
-                           sources=sources,
-                           contents=contents,
-                           dates=dates,
-                           ids=ids)
+        data = get_blog_metadata(p)
+        posts_data.append(data)
+
+
+    return render_template("blog.html", posts=posts_data)
 
 
 @app.route('/project/<id>')
@@ -128,20 +129,12 @@ def page_not_found(e):
 @app.route('/blog/<id>')
 def blog_post(id):
 
-    if id not in cache.keys() or nocache is True:
-        title, source, content, date, read = get_blog_metadata(id)
-        cache[id] = (title, source, content, date, read)
-    else:
-        title, source, content, date, read = cache[id]
-    if title is None:
+    post_data = get_blog_metadata(id)
+
+    if post_data["title"] == "":
         abort(404)
 
-    return render_template("blog_post.html",
-                           title=title,
-                           content=markdown.markdown(str(content)),
-                           source=source,
-                           date=date,
-                           read_time=read)
+    return render_template("blog_post.html",post_data=post_data)
 
 
 if __name__ == "__main__":

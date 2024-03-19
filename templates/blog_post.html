@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>minejerik | {{title}}</title>
+  <title>minejerik | {{post_data['title']}}</title>
   <link rel="stylesheet" href="{{url_for('static',filename='chota.css')}}">
   <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
   <script data-goatcounter="https://minejerik.goatcounter.com/count"
@@ -36,10 +36,10 @@
       </nav>
 
       <hgroup>
-        <h3>{{title}}</h3>
-        <h5>{{date}} - {{read_time}} Minute{{read_time|pluralize}} {% if source != "NONE" %} - <a href="{{source}}">Source</a> {% endif %} </h5>
+        <h3>{{post_data['title']}}</h3>
+        <h5>{{post_data['date']}} - {{post_data['read_time']}} Minute{{post_data['read_time']|pluralize}} {% if post_data['source'] != "NONE" %} - <a href="{{post_data['source']}}">Source</a> {% endif %} </h5>
       </hgroup>
-      {{content | safe}}
+      {{post_data['content'] | safe}}
     </div>
     <div class="col-3"></div>
   </div>

@@ -38,12 +38,7 @@
       <br>
 
       <div class="cards">
-      {% for i in range(posts | length) %}
-        {% set source = sources[i] %}
-        {% set title = titles[i] %}
-        {% set content = contents[i] %}
-        {% set id = ids[i] %}
-        {% set date = dates[i] %}
+      {% for post in posts %}
         <!-- <div class="post">
           <a class="temp" href="/blog/{{id}}">
             {{title}}<br>
@@ -52,12 +47,12 @@
         </div> -->
       <div class="card">
         <h5 class="card-header">
-          <a href="/blog/{{id}}" class="contrast" style="text-decoration:none" >{{title}}</a>
+          <a href="/blog/{{post['id']}}" class="contrast" style="text-decoration:none" >{{post['title']}}</a>
         </h5>
         <p class="card-body">
-          {{date}} 
-          {% if source != 'NONE' %}
-            - <a href="{{source}}" class="contrast" style="text-decoration:none">Source</a> 
+          {{post['date']}} 
+          {% if post['source'] != 'NONE' %}
+            - <a href="{{post['source']}}" class="contrast" style="text-decoration:none">Source</a> 
           {% endif %}
         </p>
       </div>
