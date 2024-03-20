@@ -4,6 +4,7 @@ import os
 import json
 from datetime import datetime
 import markdown
+import functools
 
 #USE mjflask
 
@@ -63,7 +64,7 @@ def index():
                            ran_quote=choice(quotes),
                            new_posts=posts)
 
-
+@functools.cache
 def get_blog_metadata(blog_id):
 
     base = {
