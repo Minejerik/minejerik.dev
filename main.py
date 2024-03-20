@@ -103,6 +103,20 @@ def get_blog_metadata(blog_id):
 
     return base
 
+@app.route("/tag/<tag_name>")
+def tag_search(tag_name):
+    posts_data = []
+    files = os.listdir("blog")
+    posts = [f.replace(".md", "") for f in files]
+    posts = sorted(posts)
+    posts.remove("example")
+    posts.reverse()
+    for p in posts:
+        data = get_blog_metadata(p)
+        if tag_name in data['tags']:
+            posts_data.append(data)
+
+    return render_template("tag.html", tag=tag_name, posts=posts_data)
 
 @app.route("/blog")
 def blog():
@@ -120,11 +134,11 @@ def blog():
     return render_template("blog.html", posts=posts_data)
 
 
-@app.route('/project/<id>')
-def project(id):
-    if id not in os.listdir("templates/projects"):
-        abort(404)
-    return render_template(f"projects/{id}/index.html")
+# @app.route('/project/<id>')
+# def project(id):
+#     if id not in os.listdir("templates/projects"):
+#         abort(404)
+#     return render_template(f"projects/{id}/index.html")
 
 
 # @app.route("/projects")

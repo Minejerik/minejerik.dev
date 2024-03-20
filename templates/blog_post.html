@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>minejerik | {{post_data['title']}}</title>
+  <meta name="description" content="{{post_data['description']}}">
+  <meta name="robots" content="follow, index">
+  <meta name="keywords" content="{% for tag in post_data['tags']%} {{tag}} {% if post_data['tags'].index(tag) != (post_data['tags']|length) -1 %}, {% endif %} {% endfor %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Minejerik">
   <link rel="stylesheet" href="{{url_for('static',filename='chota.css')}}">
   <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
   <script data-goatcounter="https://minejerik.goatcounter.com/count"
