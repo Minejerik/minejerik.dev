@@ -22,6 +22,7 @@ def pluralize(number, singular='', plural='s'):
     else:
         return plural
 
+ALL_TAGS = []
 
 # md = Markdown(app)
 
@@ -117,10 +118,11 @@ def tag_search(tag_name):
         if tag_name in data['tags']:
             posts_data.append(data)
 
-    return render_template("tag.html", tag=tag_name, posts=posts_data)
+    return render_template("tag.html", tags=tag_name, posts=posts_data)
 
 @app.route("/blog")
 def blog():
+    global ALL_TAGS
     posts_data = []
     files = os.listdir("blog")
     posts = [f.replace(".md", "") for f in files]
@@ -129,10 +131,11 @@ def blog():
     posts.reverse()
     for p in posts:
         data = get_blog_metadata(p)
+        ALL_TAGS += data['tags']
         posts_data.append(data)
+    ALL_TAGS = sorted(list(set(ALL_TAGS)))
 
-
-    return render_template("blog.html", posts=posts_data)
+    return render_template("blog.html", posts=posts_data, tags=ALL_TAGS)
 
 
 # @app.route('/project/<id>')

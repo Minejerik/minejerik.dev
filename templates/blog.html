@@ -39,6 +39,18 @@
       <br>
 
       <div class="cards">
+
+        <div class="card">
+            <h3 class="card-header">
+                Tags:
+            </h3>
+            <h4 class="card-body">
+                {% for tag in tags %}
+                <a href="/tag/{{tag}}">{{tag}}</a>
+                {% endfor %}
+            </h4>
+        </div>
+        <br>
       {% for post in posts %}
         <!-- <div class="post">
           <a class="temp" href="/blog/{{id}}">
