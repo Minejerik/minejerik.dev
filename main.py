@@ -65,7 +65,7 @@ def index():
                            ran_quote=choice(quotes),
                            new_posts=posts)
 
-@functools.cache
+# @functools.cache
 def get_blog_metadata(blog_id):
 
     base = {
@@ -167,4 +167,4 @@ def blog_post(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, use_evalex=False)
+    app.run("localhost",debug=True, use_evalex=False)
