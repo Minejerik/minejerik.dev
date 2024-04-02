@@ -1,72 +1,34 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>minejerik | {{ran_title}}</title>
+{% extends 'base.html' %}
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="/static/chota.css">
-  <link rel="stylesheet" href="/static/style.css">
-  <!-- GOAT COUNTER / ANALYTICS -->
-  <script data-goatcounter="https://minejerik.goatcounter.com/count"
-        async src="/static/count.js"></script>
-</head>
-<body style="overflow-x: hidden;">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col">
 
-      <nav class="nav">
+{% block title %}
+home
+{% endblock %}
 
-        <div class="nav-left">
-          <div class="tabs">
-            <a href="/" class="active">Home</a>
-          </div>
-        </div>
+{% block content %}
 
-        <div class="nav-center">
-          <a class="brand" href="#">Minejerik</a>
-        </div>
-
-        <div class="nav-right">
-          <div class="tabs">
-            <a href="/blog">Blog</a>
-          </div>
-        </div>
-        
-      </nav>
-
-      <br>
-      <div class="card">
-      <h3>
-        Hi! 👋 I'm Minejerik
-      </h3>
-      <blockquote>
-        "{{ran_quote | safe}}"
-        <footer>
-          <cite>- Minejerik</cite>
-        </footer>
-      </blockquote>
-      <br>
-      <h4>
-        I am a developer, and a high school student, based in michigan.
-        I am very interested in programming and computer science in general.
-        
-      </h4>
-      <h3>Recent Blog Posts:</h3>
-      <ul>
-        {% for post in new_posts %}
-        <li>
-          {{post['date']}}: <a href="/blog/{{post['id']}}">{{post['title']}}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      </div>
-    </div>
-    <div class="col-2"></div>
-  </div>
+<div class="card">
+<h3>
+  Hi! 👋 I'm Minejerik
+</h3>
+<blockquote>
+  "{{ran_quote | safe}}"
+  <footer>
+    <cite>- Minejerik</cite>
+  </footer>
+</blockquote>
+<br>
+<h4>
+  I am a developer, and a high school student, based in michigan.
+  I am very interested in programming and computer science in general.
   
-</body>
-</html>
+</h4>
+<h3>Recent Blog Posts:</h3>
+<ul>
+  {% for post in new_posts %}
+  <li>
+    {{post['date']}}: <a href="/blog/{{post['id']}}">{{post['title']}}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

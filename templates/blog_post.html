@@ -1,52 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>minejerik | {{post_data['title']}}</title>
-  <meta name="description" content="{{post_data['description']}}">
-  <meta name="robots" content="follow, index">
-  <meta name="keywords" content="{% for tag in post_data['tags']%} {{tag}} {% if post_data['tags'].index(tag) != (post_data['tags']|length) -1 %}, {% endif %} {% endfor %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Minejerik">
-  <link rel="stylesheet" href="{{url_for('static',filename='chota.css')}}">
-  <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
-  <script data-goatcounter="https://minejerik.goatcounter.com/count"
-        async src="/static/count.js"></script>
-</head>
-<body style="overflow-x: hidden;">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col">
-      
-      <nav class="nav">
+{% extends 'base.html' %}
 
-        <div class="nav-left">
-          <div class="tabs">
-            <a href="/">Home</a>
-          </div>
-        </div>
 
-        <div class="nav-center">
-          <a class="brand" href="#">Minejerik</a>
-        </div>
+{% block title  %} {{post_data['title']}} {% endblock %}
+{% block description %} {{post_data['description']}} {% endblock %}
+{% block keywords %} {% for tag in post_data['tags']%} {{tag}} {% if post_data['tags'].index(tag) != (post_data['tags']|length) -1 %}, {% endif %} {% endfor %} {% endblock %}
 
-        <div class="nav-right">
-          <div class="tabs">
-            <a href="/blog">Blog</a>
-          </div>
-        </div>
-        
-      </nav>
 
-      <hgroup>
-        <h3>{{post_data['title']}}</h3>
-        <h5>{{post_data['date']}} - {{post_data['read_time']}} Minute{{post_data['read_time']|pluralize}} {% if post_data['source'] != "NONE" %} - <a href="{{post_data['source']}}">Source</a> {% endif %} </h5>
-        <h5> {% for tag in post_data['tags']%} <a href="/tag/{{tag}}">{{tag}}</a> {% if post_data['tags'].index(tag) != (post_data['tags']|length) -1 %} - {% endif %} {% endfor %}<br></h5>
-      </hgroup>
-      {{post_data['content'] | safe}}
-    </div>
-    <div class="col-3"></div>
-  </div>
-</body>
-</html>
+{% block content %}
+<hgroup>
+  <h3>{{post_data['title']}}</h3>
+  <h5>{{post_data['date']}} - {{post_data['read_time']}} Minute{{post_data['read_time']|pluralize}} {% if post_data['source'] != "NONE" %} - <a href="{{post_data['source']}}">Source</a> {% endif %} </h5>
+  <h5> {% for tag in post_data['tags']%} <a href="/tag/{{tag}}">{{tag}}</a> {% if post_data['tags'].index(tag) != (post_data['tags']|length) -1 %} - {% endif %} {% endfor %}<br></h5>
+</hgroup>
+{{post_data['content'] | safe}}
+{% endblock %}
