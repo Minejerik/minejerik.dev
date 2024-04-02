@@ -9,29 +9,37 @@
   <meta name="keywords" content="{% block keywords %} {% endblock %}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Minejerik">
-  <!-- <link rel="stylesheet" href="{{url_for('static',filename='sakura-dark.css')}}"> -->
-  <!-- <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}"> -->
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+
+  <!-- CSS -->
+  <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
+  <link rel="stylesheet" href="/static/hack.css">
+  <link rel="stylesheet" href="/static/dark-grey.css">
+  <!-- GOATCOUNTER/ANALYTICS -->
   <script data-goatcounter="https://minejerik.goatcounter.com/count"
         async src="/static/count.js"></script>
+
+  <style>
+    img {
+      width: 100%;
+    }
+  </style>
 </head>
-<body style="overflow-x: hidden;">
-    <div class="col-3"></div>
-    <div class="col">
+<body style="overflow-x: hidden;" class="hack dark-grey">
+    <div class="main container">
+      <br>
       <header style="margin: auto; text-align: center;">
         <nav>
           <a href="/">Home</a>
-          <a class="brand" href="#">Minejerik</a>
+          <a>Minejerik</a>
           <a href="/blog">Blog</a>
         </nav>
       </header>
-
+      <br>
       <!-- START CONTENT -->
       {% block content %}
 
       {% endblock %}
       <!-- END CONTENT -->
     </div>
-    <div class="col-3"></div>
 </body>
 </html>
