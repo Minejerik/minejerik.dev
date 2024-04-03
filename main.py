@@ -53,12 +53,15 @@ quotes = [
 @app.route('/')
 def index():
     # renders main html file w/ a random title extension
-    posts = os.listdir("blog")
+    posts_data = []
+    files = os.listdir("blog")
+    posts = [f.replace(".md", "") for f in files]
+    posts.remove("example")
+    posts = [int(f) for f in posts]
     posts = sorted(posts)
     posts.reverse()
-    posts.remove("example.md")
     posts = posts[0:3]
-    posts = [get_blog_metadata(post.replace(".md","")) for post in posts]
+    posts = [get_blog_metadata(post) for post in posts]
 
     return render_template("index.html",
                            ran_title=choice(titles),
