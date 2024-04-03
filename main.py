@@ -65,7 +65,7 @@ def index():
                            ran_quote=choice(quotes),
                            new_posts=posts)
 
-@functools.cache
+# @functools.cache
 def get_blog_metadata(blog_id):
 
     base = {
@@ -102,7 +102,6 @@ def get_blog_metadata(blog_id):
 
     # read_time = round(len(content.split())/238)
     base["read_time"] = len(content.split()) // 150
-
     return base
 
 @app.route("/tag/<tag_name>")
@@ -110,8 +109,9 @@ def tag_search(tag_name):
     posts_data = []
     files = os.listdir("blog")
     posts = [f.replace(".md", "") for f in files]
-    posts = sorted(posts)
     posts.remove("example")
+    posts = [int(f) for f in posts]
+    posts = sorted(posts)
     posts.reverse()
     for p in posts:
         data = get_blog_metadata(p)
@@ -126,8 +126,9 @@ def blog():
     posts_data = []
     files = os.listdir("blog")
     posts = [f.replace(".md", "") for f in files]
-    posts = sorted(posts)
     posts.remove("example")
+    posts = [int(f) for f in posts]
+    posts = sorted(posts)
     posts.reverse()
     for p in posts:
         data = get_blog_metadata(p)
@@ -167,4 +168,4 @@ def blog_post(id):
 
 
 if __name__ == "__main__":
-    app.run("localhost",debug=True, use_evalex=False)
+    app.run("localhost", debug=True, use_evalex=False)
