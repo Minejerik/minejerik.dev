@@ -4,6 +4,7 @@ import os
 import json
 from datetime import datetime
 import markdown
+from markdown.extensions.codehilite import CodeHilite
 import functools
 
 #USE mjflask
@@ -68,7 +69,7 @@ def index():
                            ran_quote=choice(quotes),
                            new_posts=posts)
 
-@functools.cache
+# @functools.cache
 def get_blog_metadata(blog_id):
 
     base = {
@@ -101,7 +102,7 @@ def get_blog_metadata(blog_id):
 
     content = temp[3:]
     content = "\n".join(content)
-    base['content'] = markdown.markdown(content)
+    base['content'] = markdown.markdown(content, extensions=['codehilite', "nl2br"], extension_configs={"codehilite":{"linenums":False, "noclasses":False}})
 
     # read_time = round(len(content.split())/238)
     base["read_time"] = len(content.split()) // 150
