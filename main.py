@@ -102,7 +102,7 @@ def get_blog_metadata(blog_id):
 
     content = temp[3:]
     content = "\n".join(content)
-    base['content'] = markdown.markdown(content, extensions=['codehilite', "nl2br"], extension_configs={"codehilite":{"linenums":False, "noclasses":False}})
+    base['content'] = markdown.markdown(content, extensions=['codehilite', "nl2br", "toc"], extension_configs={"codehilite":{"linenums":False, "noclasses":False}})
 
     # read_time = round(len(content.split())/238)
     base["read_time"] = len(content.split()) // 150
